@@ -1,0 +1,63 @@
+{{- range $moduleName, $value := .Values.module }}
+{{- $kebabedModuleName := $moduleName | kebabcase }}
+{{- if and $value.enable $value.data  }}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-run-sh-{{ $kebabedModuleName }}-{{ $.Values.environment }}-{{ $.Values.action }}
+  namespace: {{ $.Release.Namespace }}
+  {{- if not $.Values.argocdDeployer }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "1"
+  {{- end }}
+data:
+  {{- range $path, $_ := $.Files.Glob "files/scripts/**" }}
+    {{- ($.Files.Glob $path).AsConfig | nindent 2 -}}
+  {{- end }}
+  run.sh: |-
+    #!/bin/bash
+    set -a
+    . ../common-config/.env
+    . ../common-config/deploy.env
+    . /opt/audax/envs/common.deploy.env
+    . /opt/audax/envs/common.env
+    . ./.env
+    . /opt/audax/envs/${KEBABED_MODULE_NAME}.env
+    . /opt/audax/envs/common.environment.env
+    . /opt/audax/envs/common.service-exclusions.env
+    export HELM_DIFF_COLOR=true
+    export HELM_DIFF_OUTPUT_CONTEXT=5
+    {{- if eq $.Values.authType "kubeConfig" }}
+    export KUBECONFIG=/tmp/kubeconfig.yaml
+    {{- end }}
+    set +a
+    echo "DEPLOY -{{ $kebabedModuleName }} on {{ $.Values.environment }} with tag {{ $value.image.tag }} "
+    {{- if eq $.Values.authType "IRSA" }}
+    aws eks update-kubeconfig --name  ax-dev-sg-cpl-eks --alias dev 
+    {{- end }}
+
+    out_dir=/opt/audax/{{ $.Values.buildNumber | default "build" }}/${KEBABED_MODULE_NAME} && mkdir -p ${out_dir}
+    command={{ $value.helmfile.command }}
+
+    diff_args='{{ $value.helmfile.diffArgs | quote }}'
+    [[ $command == 'diff' && ! -z $diff_args ]] && diff_args="--diff-args $diff_args"
+    overrides=`awk '!/^#/ {print "--set", $0, "/" }' /opt/audax/envs/overrides.env`
+    cp /opt/audax/envs/scheduling.yaml ../common-config/config/base/scheduling-{{ $.Values.environment }}.yaml
+
+    helmfile --color \
+            $command \
+            $overrides \
+            {{- if (trim $value.helmfile.options) }}
+            {{  $value.helmfile.options }} \
+            {{- end }}
+            {{- if (trim $value.helmfile.helmArgs) }}
+            --args {{ $value.helmfile.helmArgs | quote }} \
+            {{- end }}
+            $diff_args | tee ${out_dir}/helmfile.$command.out 2>&1
+
+    ansi2html < ${out_dir}/helmfile.$command.out > ${out_dir}/helmfile.$command.html
+    sleep 10 && exit
+---
+{{- end }}
+{{- end }}

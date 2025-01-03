@@ -1,0 +1,54 @@
+
+{{- range $moduleName, $value := .Values.module }}
+{{- $kebabedModuleName := $moduleName | kebabcase }}
+{{- if and $value.enable $value.data }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-{{ $kebabedModuleName }}-env-{{ $.Values.environment }}-{{ $.Values.action }}
+  namespace: {{ $.Release.Namespace }}
+  {{- if not $.Values.argocdDeployer }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "1"
+  {{- end }}
+data:
+  {{ $kebabedModuleName }}.env: {{ tpl .data $ | toYaml | indent 6 }}
+{{- range $.Values.commonFiles }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-{{ $kebabedModuleName }}-{{ .name | replace "." "" }}-env-{{ $.Values.environment }}-{{ $.Values.action }}
+  namespace: {{ $.Release.Namespace }}
+  {{- if not $.Values.argocdDeployer }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "1"
+  {{- end }}
+data:
+  {{ .name }}.env: {{ tpl .data  $ | toYaml | indent 6 }}
+
+{{- end }}
+
+{{- range $.Values.extraFiles }}
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cm-{{ $kebabedModuleName }}-{{ .name | replace "." "" }}-yaml-{{ $.Values.environment }}-{{ $.Values.action }}
+  namespace: {{ $.Release.Namespace }}
+  {{- if not $.Values.argocdDeployer }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "1"
+  {{- end }}
+data:
+  scheduling.yaml: {{ tpl .data  $ | toYaml | indent 6 }}
+{{- end }}
+
+{{- end }}
+{{- end }}
+
+
