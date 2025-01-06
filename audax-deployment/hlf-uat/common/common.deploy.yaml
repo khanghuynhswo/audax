@@ -1,0 +1,91 @@
+environment: ax-uat-62
+commonFiles:
+  commonDeploy:
+    name: common.deploy
+    data: | 
+        AX_DEPLOY_HULK__CHARTS_DIR=../../../../common-config/charts
+        AX_DEPLOY_GLOBAL__DIR=../../../../common-config
+        AX_DEPLOY_COMMON__DIR=../../../../common-config
+
+        #NS
+        AX_DEPLOY_K8S__PRO_NS={{ .Values.shortEnv }}-prd
+        AX_DEPLOY_K8S__NOSQL_NS=cassandra
+        AX_DEPLOY_K8S__PAYMENTSCARDS_NS={{ .Values.shortEnv }}-pnc
+        AX_DEPLOY_K8S__ORG_NS={{ .Values.shortEnv }}-onp
+        AX_DEPLOY_K8S__ACCTXN_NG='[ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng]'
+        AX_DEPLOY_K8S__ACCTXN_NS={{ .Values.shortEnv }}-ant
+        AX_DEPLOY_K8S__PLATFORM_ESUSER_NS={{ .Values.shortEnv }}
+        AX_DEPLOY_K8S__ENA_NS={{ .Values.shortEnv }}
+        AX_DEPLOY_K8S__DATA_NS={{ .Values.shortEnv }}-data
+        AX_DEPLOY_K8S__DATA_CHOGATH_NS={{ .Values.shortEnv }}-data
+        AX_DEPLOY_K8S__SECRETSOL_NS={{ .Values.shortEnv }}-platform
+        AX_DEPLOY_K8S__PLT_GTW_KINT_NS=uat-62-platform
+        AX_DEPLOY_K8S__PLT_GTW_KEXT_NS=uat-62-platform
+        AX_DEPLOY_K8S__PLT_GTW_KEGR_NS=uat-62-platform
+        AX_DEPLOY_K8S__DATA_JOB_SUBJ_NS=[uat-62-data]
+        AX_DEPLOY_K8S__PROMETHEUSPUSHGATEWAY__NS=monitoring
+        AX_DEPLOY_K8S__URGOT__NS=monitoring
+        AX_DEPLOY__CONFIGSERVER_NS={{ .Values.shortEnv }}
+        AX_DEPLOY_K8S__PLATFORM_NS=uat-62-platform
+        AX_DEPLOY_K8S__PLT_WORKFLOW_NS=uat-62-platform
+        AX_DEPLOY_K8S__CUSTENG_NS={{ .Values.shortEnv }}-cne
+
+        #KC
+        AX_DEPLOY_K8S__MSVC_PLT_KC=dev
+        AX_DEPLOY_K8S__DATA_PLT_KC=dev
+        AX_DEPLOY_K8S__DATA_PLATFORM_KC=dev
+        AX_DEPLOY_K8S__MSVC_PLATFORM_KC=dev
+        AX_DEPLOY_K8S__PLT_GTW_KEGR_KC=dev
+        AX_DEPLOY_K8S__PLT_GTW_KEXT_KC=dev
+        AX_DEPLOY_K8S__PLT_GTW_KINT_KC=dev
+        AX_DEPLOY_K8S__MSVC_PRO_KC=dev
+        AX_DEPLOY_K8S__FIN_PRO_KC=dev
+        AX_DEPLOY_K8S__CUSTENG_KC=dev
+        AX_DEPLOY_K8S__DATA_KC=dev
+        AX_DEPLOY_K8S__DATA_DATA_KC=dev
+        AX_DEPLOY_K8S__DATA_PLT_NOSQL_KC=dev
+        AX_DEPLOY_K8S__DATA_PLT_SECRETSOL_KC=dev
+        AX_DEPLOY_K8S__MSVC_PLT_SECRETSOL_KC=dev
+        AX_DEPLOY_K8S__MSVC_PLT_MON_KC=dev
+        AX_DEPLOY_K8S__ORG_KC=dev
+
+        #NG
+        AX_DEPLOY_K8S__PRO_NG='[ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng]'
+        AX_DEPLOY_K8S__FIN_PRO_NG='[ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng]'
+        AX_DEPLOY_K8S__ENA_NG='[ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng]'
+        AX_DEPLOY_K8S__DATA_CASS_NG=ax-dev-sg-cpl-cassandra-ng
+        AX_DEPLOY_K8S__PLATFORM_PUBSUBPLUS_NG=infra
+        AX_DEPLOY_K8S__PLATFORM_PUBSUBPLUS_NG='[ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng]'
+        AX_DEPLOY_K8S__PAYMENTSCARDS_NG='[ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng]'
+        AX_DEPLOY_K8S__RISK_NG='[ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng]'
+        AX_DEPLOY_K8S__RISK_NS={{ .Values.shortEnv }}-rsk
+        AX_DEPLOY_K8S__CUSTENG_NG='[ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng]'
+        AX_DEPLOY_K8S__ORG_NG='[ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng]'
+
+        #INFRA
+        AX_GLOBAL_RDBMS__POSTGRES_ACCOUNTTRANSACTIONS_CIDRS='10.101.192.0/21,10.101.200.0/21,10.101.208.0/21'
+        AX_GLOBAL_RDBMS__POSTGRES_ACCOUNTTRANSACTIONS_PORTS='[5401]'
+        AX_GLOBAL_SOLACE__CIDRS='10.101.160.0/19,10.101.128.0/19,10.101.96.0/19'
+        AX_GLOBAL_CASSANDRA__CIDRS='10.101.160.0/19,10.101.128.0/19,10.101.96.0/19'
+        AX_GLOBAL_ANT__LOAD_BALANCER_CIDRS='10.101.64.0/20,10.101.48.0/20,10.101.80.0/20'
+        AX_GLOBAL_FINERACT__CIDRS='10.101.160.0/19,10.101.128.0/19,10.101.96.0/19'
+        AX_GLOBAL_KONG_EGRESS__LOAD_BALANCER_CIDRS='10.101.160.0/19,10.101.128.0/19,10.101.96.0/19'
+        AX_GLOBAL_STORAGE__S3_CIDRS='10.101.177.146/32,10.101.148.209/32,10.101.113.214/32,16.12.48.0/21,18.34.248.0/22,18.34.64.0/21,3.5.146.0/23,3.5.148.0/22,52.219.124.0/22,52.219.128.0/21,52.219.164.0/22,52.219.180.0/22,52.219.184.0/21,52.219.32.0/21,52.219.40.0/22'
+        AX_GLOBAL_RDBMS_POSTGRES__DEFAULT_CIDRS='10.101.192.0/21,10.101.200.0/21,10.101.208.0/21'
+        AX_DEPLOY_K8S__DEFAULT_STORAGE_CLASS=gp3-ebs-csi
+        AX_DEPLOY__PVC_STORAGE_CLASS=gp3-ebs-csi
+
+        #OTHERS
+        AX_DEPLOY__SERVICE_PATH=nexus
+        AX_ANT_ACCOUNTSTRANSACTIONS_DBRELEASE__SECRET=db-admin
+        AX_GLOBAL_EBBS__BASE_URL="http://mysterio"
+        AX_GLOBAL_EBBS__ID_BASE_URL="http://mysterio"
+        AX_GLOBAL_EBBS__MY_BASE_URL="http://mysterio"
+        AX_GLOBAL_OAUTH__CLIENT_ID="j5XrcV0BjRkdURr9qj2hFUStNZUa"
+        AX_GLOBAL_OAUTH__AUTH_SERVER_URI="https://identity-hk-dev.api.dev.net:8263/oauth2/token"
+        AX_GLOBAL_STORAGE__S3_CONFIG_SEED_PATH="ax-uat-62/input/config-data"
+        AX_GLOBAL_REN__JKS_PRIVATE_KEY_ALIAS_NAME="ren"
+
+
+
+

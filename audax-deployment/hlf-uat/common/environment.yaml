@@ -1,0 +1,39 @@
+commonFiles:
+  environment:
+    name: common.environment
+    data: |
+      ##ONP
+      AX_ONP__ORGANIZATION=hlf-id
+      AX_ONP__ENV=dev
+      
+      AX_ONP_IAM_DBRELEASE__SECRET=db-admin
+      AX_ONP_PTY_DBRELEASE__SECRET=db-admin
+      AX_ONP_ORG_DBRELEASE__SECRET=db-admin
+      AX_ONP_SVC_DBRELEASE__SECRET=db-admin
+      
+      AX_ONP_EON__ENV_LOG_LEVEL=DEBUG
+      AX_ONP_EON__ENV_JMS_LOGGING_ENABLED=true
+      AX_ONP_EON__ENV_REST_CLIENT_LOGGING_ENABLED=true
+      AX_ONP_EON__ENV_PARTNER_MOCK_ENABLED=false
+      AX_ONP_ECHO__ENV_LOG_LEVEL=INFO
+      AX_ONP_ECHO__ENV_WEB_CLIENT_LOGGING_ENABLED=true
+      AX_ONP_ECHO__ENV_TRACER_DEBUG_ENABLED=false
+      AX_ONP_DAGGER__ENV_LOG_LEVEL=DEBUG
+      AX_ONP_CIAM_AUTH_SERVER__LOG_LEVEL=info
+      
+      ##PLT
+      AX_PLT__ORGANIZATION=IBBKIDJA
+      AX_PLT__PARTNERS=MLP
+      AX_PLT__ENV=dev
+      AX_PLT__ING_PREFIX=uat-62
+
+      AX_PLT_AUTHXS__PARTNER_ID=MLP
+      
+      AX_PLT_GTW__ENV_GATEWAY_MODULES=platform,origination-party,customer-engagement,data,enablers
+      AX_PLT_GTW_KINT__ENV_LOG_LEVEL=debug
+      AX_PLT_GTW_KINT__ENV_DEBUG_PAYLOAD_ENABLED=true
+      AX_PLT_GTW_KEXT__ENV_LOG_LEVEL=debug
+      AX_PLT_GTW_KEXT__ENV_DEBUG_PAYLOAD_ENABLED=true
+      AX_PLT_GTW_KEGR__ENV_LOG_LEVEL=debug
+      AX_PLT_GTW_KEGR__ENV_DEBUG_PAYLOAD_ENABLED=true
+      AX_PLT_GTW_KEGR__HTTPS_HTTP_PROXY_ENABLED=true

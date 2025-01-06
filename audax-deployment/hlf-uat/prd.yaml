@@ -1,0 +1,8 @@
+module:
+  prd:
+    secrets: ""
+    data: |
+      AX_PRD_PE_DBRELEASE__DEPLOY="true"
+      AX_PRD_LNDG_DBRELEASE__DEPLOY="false"
+      AX_PRD_PE_DBRELEASE__SECRET=db-admin
+      AX_PRD_LNDG_DBRELEASE__SECRET=db-admin
