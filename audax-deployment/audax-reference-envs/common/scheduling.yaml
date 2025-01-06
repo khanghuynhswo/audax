@@ -1,0 +1,119 @@
+
+extraFiles:
+  scheduling: 
+    name: scheduling
+    data: |
+      global:
+        scheduling:
+            affinity:
+              nodeGroup:
+                gpu:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - gpu
+                infra:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-infra-ng
+                accountsTransactions:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                customerEngagement:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                products:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                risk:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                originationParty:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                paymentsCards:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                microservice:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                monitoring:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                tools:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                vault:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                cassandra:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-cassandra-ng
+                fineract:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                jobs:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                kong-ext:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                kong-int:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                query-metadata:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                query-coordinator:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                query-workers:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                streaming:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng
+                vault_tools:
+                  - key: audax.io/nodegroup
+                    operator: In
+                    values:
+                      - ax-dev-sg-cpl-{{ .Values.shortEnv }}-ng

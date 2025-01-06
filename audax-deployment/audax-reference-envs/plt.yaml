@@ -1,0 +1,103 @@
+module:
+  plt:
+    secrets: ""
+    data: |
+        ## SERVICE PROPERTIES
+        # ZAC
+        AX_PLT_MON_ZAC__VAULT_ENABLED=false
+        AX_PLT_MON_ZAC__S3_PROXY_ENABLED=false
+
+        # RYZE
+        AX_PLT_MON_RYZE__ALERT_INDEX=audax_microservice_error
+
+        # SYMONSPEC
+        AX_PLT_MON_SYMONSPEC__CRON="*/30 01-10 * * 1-5"
+        AX_PLT_MON_SYMONSPEC__SYMON_CONFIG_BRANCH=test
+        AX_PLT_MON_SYMONSPEC__SYMON_CONFIG_REPO=symon-config
+
+        AX_GLOBAL_STORAGE__OBJECT_S3_LBACCESSLOG=sc-s3access-log-756866396210-ap-east-1
+        AX_GLOBAL_STORAGE__OBJECT_S3_LBACCESSLOG_REGION=ap-east-1
+        AX_GLOBAL_NETWORK__SUBNET_T2="subnet-018a5e4c70cad4b75, subnet-03a21bf48141d15a4, subnet-07c089af682aa04c7"
+
+        # URGOT-NOTIFICATIONS
+        AX_PLT_MON_URGOT__NOTIFICATION_SYNCREPO='urgot-notifications'
+
+        # PUBSUBPLUS
+        AX_GLOBAL_JMS__MESSAGE_DEFAULT_HOST=solace-uat-62.cpl.sg.dev.ax.it
+        AX_PLT_CORE_PUBSUBPLUS__RELEASE_NAME=pubsubplus-uat-62
+        AX_PLT_CORE_PUBSUBPLUS__CLUSTER_NAME=solace-uat-62
+        AX_PLT_CORE_PUBSUBPLUS_EXPORTER__RELEASE_NAME=pubsubplus-exporter-uat-62
+        AX_PLT_CORE_PUBSUBPLUS__SA_NAME=solace-podtagupdater-uat-62
+        AX_PLT_CORE_PUBSUBPLUS__SOLACE_EXPORTER_TLS_ENABLED=true
+
+        # JOBCLEANER
+        AX_PLT_MON_JOBCLENANER__NAMESPACES="application-1,application-3,arc-runners,arc-systems,argocd,cassandra,cert-manager,coroot,crossplane-system,data-foundation,default,demo,dev-ant,dev-cne,dev-data,dev-onp,dev-platform,dev-pnc,dev-prd,dev-rsk,dev-tools,elastic-system,external-secrets,falco,fluent,infra,ingress,jenkins,jenkins-dev,k8spacket,k8ssandra,kube-node-lease,kube-public,kube-system,kubernetes-dashboard,kyverno,monitoring,pgadmin,pl,platform,plc,prometheus,reflector,services-1,services-2,siem-testing,sonarqube,test-tooling,uat,uat-61,uat-61-ant,uat-61-cne,uat-61-data,uat-61-onp,uat-61-platform,uat-61-pnc,uat-61-prd,uat-61-rsk,uat-62,uat-62-ant,uat-62-cne,uat-62-data,uat-62-onp,uat-62-platform,uat-62-pnc,uat-62-prd,uat-62-rsk,workflow"
+
+        AX_PLT_AUTHXS__HTTP_CLIENT_PROXY_MAPPINGS=".*\\.microsoft\\.com;http://proxy.mgt.ax.it:8080"
+        AX_PLT_AUTHXS__COUNTRY_CODE=SG
+        
+
+        # GATEWAY
+        AX_PLT_GTW_KEXT__ENV_REAL_IP_HEADER=x-forwarded-for
+        AX_PLT_GTW_KEXT__ENV_REAL_IP_RECURSIVE=on
+        AX_PLT_COMMON__GRAFANA_DASHBOARDS=false
+        AX_PLT_COMMON__OPENSEARCH_DASHBOARDS=false
+        #authxs-realms
+        AX_PLT_AUTHXS__PARTNER_ID=MLP
+        AX_PLT_AUTHXS__HTTP_CLIENT_PROXY_MAPPINGS=".*\\.microsoft\\.com;http://proxy.mgt.ax.it:8080,.*\\.microsoftonline\\.com;http://proxy.mgt.ax.it:8080"
+        AX_PLT_AUTHXS__ENTRA_AUTHORIZARION_URL=https://login.microsoftonline.com/d3724a30-c97d-408c-8e9c-387ffd04c3fc/oauth2/v2.0/authorize
+        AX_PLT_AUTHXS__ENTRA_TOKEN_URL=https://login.microsoftonline.com/d3724a30-c97d-408c-8e9c-387ffd04c3fc/oauth2/v2.0/token
+        AX_PLT_AUTHXS__ENTRA_USER_INFO_URL=https://graph.microsoft.com/oidc/userinfo
+        AX_PLT_AUTHXS__ENTRA_CLIENT_ID=f952d9a7-2a0b-4ff7-91aa-aaa25e2b7bb8
+        AX_PLT_AUTHXS__FORCE_RUN=true
+        AX_PLT_AUTHXS__FORCE_RUN_VERSIONS=V1.0.8
+        AX_PLT_AUTHXS__IDPS=ENTRA
+        AX_PLT_GTW_KINT__INGRESS_EXTRAHOSTS=airflow,lissandra,openmetadata,query
+        AX_PLT_GTW_KEXT__ENV_GATEWAY_METADATA_OVERRIDE_YAML='
+        IBBKIDJA:
+            DEFAULT:
+                "/auth.*": {}
+                "/customer/api/v1/static-data/.resourcename.": {}
+                "/customer/v1/apps/.appId./feature/preferences": {}
+                "/customer/v1/assets/.partnerId./.assetKey.": {}
+                "/customer/v1/assets/.partnerId./index": {}
+                "/customer/v1/contents/.partnerId./incremental-data/.contentType.": {}
+                "/customer/v1/documents": {}
+                "/customer/v1/forms/.formId.": {}
+                "/customer/v1/oauth/.well-known/jwks.json": {}
+                "/customer/v1/process/.domain./.processType.*": {}
+                "/customer/v1/public/assets/.assetKey.": {}
+                "/customer/v1/public/assets/index": {}
+                "/customer/v1/tasks/.domain./.processType.*": {}
+                "/customer/v1/tasks/.domain./.processType./search": {}
+                "/customer/v1/terms-and-conditions/.fileId.": {}
+                "/customer/v1/users/device": {}
+                "/customer/v1/users/devices": {}
+                "/customer/v1/users/devices/register": {}
+                "/customer/v1/users/lost-mobile/verification": {}
+                "/customer/v1/users/status": {}
+                "/customer/v1/users/token/assign": {}
+                "/customer/v1/users/token/instance/activate": {}
+                "/customer/v1/users/token/instance/register": {}
+                "/customer/v1/users/token/license/activate": {}
+                "/customer/v1/users/token/license/register": {}
+                "/customer/v1/users/token/logout": {}
+                "/customer/v1/users/token/offline": {}
+                "/customer/v1/users/token/refresh": {}
+                "/customer/v1/users/user-management/user-info": {}
+                "/customer/v2/users/applications/.applicationId./liveness-result": {}
+                "/customer/v2/users/device/login": {}
+                "/customer/v3/users/applications": {}
+                "/customer/v3/doc/store": {}
+                "/customer/v3/doc/details": {}
+                "/customer/v1/users/device/sync": {}
+                "/customer/v2/users/application-registered": {}
+                "/customer/v3/users/applications/.applicationId./status": {}        '
+        AX_PLT_GTW_KEGR__ENV_GATEWAY_METADATA_OVERRIDE_YAML='
+        IBBKIDJA:
+            DEFAULT:
+                "/main.*": {}
+                "/vida.*": {}
+        '
+        
+    

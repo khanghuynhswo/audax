@@ -1,0 +1,5 @@
+commonFiles:
+  overrides:
+    name: overrides
+    data: |
+      # moduleVersion=v6.2.0

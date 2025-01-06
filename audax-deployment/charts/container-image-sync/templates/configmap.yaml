@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "container-image-sync.fullname" . }}-cm
+  namespace: {{ $.Release.Namespace }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-weight": "1"
+data:
+  entrypoint.sh: |-
+    {{- tpl (.Files.Get "files/entrypoint.sh") .| nindent 4 }}
+  modules-definition.yaml: |-
+    module:
+    {{- .Values.module | toYaml | nindent 6 }}
+  {{- if .Values.target.lifecycle.enabled }}
+  repo-lifecycle-policy.json: |-
+    {{- .Files.Get "files/repo-lifecycle-policy.json" | nindent 4 }}
+  {{- end }}
+  {{- if .Values.target.policy.enabled }}
+  repo-policy.json: |-
+    {{- tpl (.Files.Get "files/repo-policy.json") . | nindent 4 }}
+  {{- end }}

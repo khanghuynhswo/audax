@@ -1,0 +1,52 @@
+module:
+  onp:
+    secrets: ""
+    data: |
+      AX_GLOBAL__CA_SECRET=ax-ca-bundle
+      AX_ONP_CIAM__PARTNER_LIST=MLP
+      AX_ONP_CIAM_AUTH_SERVER_REALM__SUMOLOGIC_ADMIN_URL=https://service.au.sumologic.com/sumo/saml/consume/892589915
+      AX_ONP_CIAM_AUTH_SERVER_REALM__COUNTRY_CODE=SG
+      AX_ONP_CIAM__CASSANDRA_TMX_USERNAME=tmx_rw
+      AX_ONP_CIAM_SENTINEL__RECLAIMLICENSE_BACKDATE=90
+      AX_ONP_ECHO__ENV_SUNSPOT_CLIENT_TIMEOUT_MS=4000
+
+      AX_ONP_ORIGINATION_NEOS__NEXT_PUBLIC_PARTNER_ID=MLP
+      AX_ONP_ORIGINATION_NEOS__NEXT_PUBLIC_KONG_API_KEY="6d470ab8-781e-42d3-9f89-dbdaee6ed189"
+      AX_ONP_ORIGINATION_NEOS__NEXT_PUBLIC_NEOS_CLIENT_KEY="x9G6XK5JDo"
+
+      AX_ONP_CIAM_WOLVERINE__MLP_PARTNER_BASE_URL=https://accounts.preproduction.bukalapak.com
+      AX_ONP_CIAM__MLP_PARTNER_CLIENT_ID=c1561e37a5561de1573c277111af2a51
+      AX_ONP_CIAM_LAURA__AUTOMATION_ALLOWED_ENV={{ .Values.env }}
+      AX_ONP_CIAM_AUTH_SERVER__SPI_CONNECTIONS_HTTP_CLIENT_DEFAULT_PROXY_MAPPINGS="test\\.api\\.myinfo\\.gov\\.sg;http://proxy.mgt.ax.it:8080,.*\\.test.api.myinfo.gov\\.sg;http://proxy.mgt.ax.it:8080,.*\\.microsoft\\.com;http://proxy.mgt.ax.it:8080,.*\\.microsoftonline\\.com;http://proxy.mgt.ax.it:8080,.*\\.graph\\.com;http://proxy.mgt.ax.it:8080,.*\\.sc\\.com;http://gateway.zscloud.net:443,.*\\.sociolabs\\.io;http://gateway.zscloud.net:443,.*\\.bukalapak\\.com;http://gateway.zscloud.net:443,.*\\.sociolla\\.com;http://gateway.zscloud.net:443"
+      AX_ONP_PARTY_PRXLTN__SPRING_PROFILES_ACTIV=sit,nexus-listener
+      AX_ONP_REFDATA_MORGANA__REF_DATA_FILTER_BY_COUNTRY_CODE=true
+      AX_ONP_REFDATA_MORGANA__REF_DATA_COUNTRY_CODE=ID
+      AX_ONP_PARTY_PRX__ICDD_REFERENCE_MANDATORY=false
+      AX_ONP_PARTY_PRX__BANK_JMS_PROFILE_UPDATE_QUEUE=q-51106-nexus-profile-nx-my
+      AX_ONP_PARTY_PRX__BANK_JMS_MESSAGEVPN=vpn-cb-customers-t1
+      AX_ONP_PARTY_PRX__BANK_JMS_CLIENTID=51106-nexus-my-nonprd
+      AX_ONP_PARTY_PRX__NEXUS_READONLY_DB_ENABLED=false
+      AX_ONP_PARTY_PRX__ICM_PROFILE_UPDATE_ACK_RESPONSE_TOPIC=v1/51106-nexus-/prof/scbml-1.0/my/res/upd/all/al
+      AX_ONP_PARTY_ARCHANGEL__EBBS_SIG_DATE_MOCK_ENABLED=true
+      AX_ONP_PARTY_ARCHANGEL__NEXUS_OAUTH_CLIENT_ID=ItcYWrG3QofGVqWFnAorfVsqFJ4a
+      AX_ONP_ORIGINATION_CANDRA__TAX_SCREENING_HOST_URL=http://mysterio-risk
+      AX_ONP_ORIGINATION_CANDRA__TAX_SCREENING_CONSUMER_NAME=sc_poc
+      AX_ONP_ORIGINATION_FORGE__NEXUS_ADVANCE_AI_BASE_URL=http://mysterio
+      AX_ONP__INGRESS_PREFIX={{ .Values.shortEnv }}
+
+      ## Note - Update the following required environment fields before running the Keycloak-realms job.
+      AX_ONP_CIAM_AUTH_SERVER_REALM__IDPS=mlp-oidc
+      AX_ONP_CIAM_AUTH_SERVER_REALM__REALMS=ax-mlp,ax-mlp-mock
+      AX_ONP_CIAM_AUTH_SERVER_REALM__MLP_JWKS_URL=https://uat-ms-ax.mlp.io/oauth/jwks
+      AX_ONP_CIAM_AUTH_SERVER_REALM__MLP_AUTHORIZATION_URL=https://uat-ms-ax.mlp.io/oauth/auth
+      AX_ONP_CIAM_AUTH_SERVER_REALM__ENABLE_MOCK_REALM=true
+      AX_ONP_CIAM_WOLVERINE__MLP_PARTNER_BASE_URL=https://uat-ms-nexus.mlp.io
+      AX_ONP_CIAM__MLP_PARTNER_CLIENT_ID=CaLWg7Y0tfhz6F1XEjyVFYfYAxrlGCLgkQ1kjGWN5oE
+      
+      AX_ONP_CIAM_THANOS__TMX_TIME_OUT_EMAIL_ID=nexus_tmx_monitoring@mlp.io
+
+      AX_CNE_COM_PHOENIX__MSG_TEMPLATE_PREFIX="MVP Audax UAT testing - "
+      AX_CNE_COM_THUNDERBIRD__MDIS_ACK_ENABLED="false"
+      AX_CNE_COM_THUNDERBIRD__FROM_AUX_ENV="true"
+      AX_CNE_COM_THUNDERBIRD__CASSANDRA_USERNAME="notification_rw"
+      AX_ONP_CIAM_AUTH_SERVER_INTERNAL_REALM__REALMS=nexus-portal

@@ -1,0 +1,67 @@
+module:
+  custom:
+    fullName: ax-cust-hlf
+    enable: true
+    image:
+      registry: "270466065023.dkr.ecr.ap-southeast-1.amazonaws.com/"
+      repository: "audax/ax-cust-hlf"
+      tag: "v0.0.0-alpha.e319199"
+    helmfile:
+      command: apply
+      options: ''
+      helmArgs: ' '
+  cne:
+    fullName: customer-engagement
+    enable: true
+    image:
+      registry: "270466065023.dkr.ecr.ap-southeast-1.amazonaws.com/"
+      repository: "audax/customer-engagement"
+      tag: "v6.2.0-rc.38"
+    helmfile:
+      command: apply
+      options: ''
+      helmArgs: ''
+  onp:
+    fullName: origination-party
+    enable: true
+    image:
+      registry: "270466065023.dkr.ecr.ap-southeast-1.amazonaws.com/"
+      repository: "audax/origination-party"
+      tag: "v7.1.0-rc.16"
+    helmfile:
+      command: sync
+      options: ''
+      helmArgs: ''
+  plt:
+    fullName: platform
+    enable: true
+    image:
+      registry: "270466065023.dkr.ecr.ap-southeast-1.amazonaws.com/"
+      repository: "audax/platform"
+      tag: "v6.2.0-rc.118"
+    helmfile:
+      command: apply
+      options: '-l domain=init -l domain=core -l domain=workflow -l domain=iam -l domain=gateway' #please refrain from modifying filters. you are not supposed to modify this.
+      helmArgs: ''
+  data:
+    fullName: data
+    enable: true
+    image:
+      registry: "270466065023.dkr.ecr.ap-southeast-1.amazonaws.com/"
+      repository: "audax/data"
+      tag: "v6.2.0-rc.15"
+    helmfile:
+      command: sync
+      options: ''
+      helmArgs: ' '
+  prd:
+    fullName: products
+    enable: true
+    image:
+      registry: "270466065023.dkr.ecr.ap-southeast-1.amazonaws.com/"
+      repository: "audax/products"
+      tag: "v6.2.0-rc.15"
+    helmfile:
+      command: apply
+      options: '-l domain!=lending'
+      helmArgs: ''
